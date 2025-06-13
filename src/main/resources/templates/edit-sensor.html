@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/header.html"/>
+<th:block th:replace="fragments/nav.html"/>
+<div class="container mt-5">
+  <h1 class="text-center">Edit Sensor</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <form th:action="@{/sensors/edit/{id}(id=${sensorDTO.id})}" th:object="${sensorDTO}" method="post">
+            <div class="mb-3">
+              <label for="location" class="form-label">Location</label>
+              <input type="text" id="location" name="location" th:field="*{location}" class="form-control" placeholder="Enter sensor location" required>
+            </div>
+            <div class="mb-3">
+              <label for="sensorType" class="form-label">Sensor Type</label>
+              <select id="sensorType" name="sensorType" th:field="*{sensorType}" class="form-select" required>
+                <option value="" disabled>Select sensor type</option>
+                <option value="TEMPERATURE" th:selected="${sensorDTO.sensorType == 'TEMPERATURE'}">Temperature</option>
+                <option value="HUMIDITY" th:selected="${sensorDTO.sensorType == 'HUMIDITY'}">Humidity</option>
+                <option value="PRESSURE" th:selected="${sensorDTO.sensorType == 'PRESSURE'}">Pressure</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Update Sensor</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<th:block th:replace="fragments/footer.html"/>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/header.html"/>
+<th:block th:replace="fragments/nav.html"/>
+<div class="container mt-5">
+  <h1 class="text-center">Add New Sensor</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <form th:action="@{/sensors/add}" th:object="${sensor}" method="post">
+            <div class="mb-3">
+              <label for="location" class="form-label">Location</label>
+              <input type="text" id="location" name="location" th:field="*{location}" class="form-control" placeholder="Enter location" required>
+            </div>
+            <div class="mb-3">
+              <label for="sensorType" class="form-label">Sensor Type</label>
+              <input type="text" id="sensorType" name="sensorType" th:field="*{sensorType}" class="form-control" placeholder="Enter sensor type" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Add Sensor</button>
+            <a th:href="@{/dashboard}" class="btn btn-secondary w-100 mt-2">Cancel</a>
+          </form>
+
+          <!-- Display Error Message -->
+          <p class="text-danger text-center mt-2" th:text="${error}" th:if="${error != null}"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<th:block th:replace="fragments/footer.html"/>
+</html>

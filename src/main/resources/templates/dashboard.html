@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/header.html"/>
+<th:block th:replace="fragments/nav.html"/>
+<div class="container mt-5">
+  <h1 class="text-center">Dashboard</h1>
+  <div class="row mt-4">
+    <!-- Main Block: Sensors CRUD Table -->
+    <div class="col-lg-8">
+      <div class="card">
+        <div class="card-header">
+          <h5>Sensors Management</h5>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <a href="#" th:href="@{/sensors/add}" class="btn btn-primary">Add New Sensor</a>
+          </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th>Location</th>
+              <th>Sensor Type</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="sensor : ${sensors}">
+              <td th:text="${sensor.location}"></td>
+              <td th:text="${sensor.sensorType}"></td>
+              <td>
+                <a href="#" th:href="@{/sensors/view/{id}(id=${sensor.id})}" class="btn btn-info btn-sm">View</a>
+                <a href="#" th:href="@{/sensors/edit/{id}(id=${sensor.id})}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="#" th:href="@{/sensors/delete/{id}(id=${sensor.id})}" class="btn btn-danger btn-sm">Delete</a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Smaller Block: Notifications -->
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <h5>Notifications</h5>
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" th:each="notification : ${notifications}">
+              <div>
+                <strong th:text="${notification.notificationType}"></strong>:
+                Value <span th:text="${notification.value}"></span>,
+                Threshold <span th:text="${notification.threshold}"></span>
+              </div>
+              <span class="badge bg-warning text-dark">Alert</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<th:block th:replace="fragments/footer.html"/>
+</html>

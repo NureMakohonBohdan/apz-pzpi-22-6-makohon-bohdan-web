@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/header.html"/>
+<th:block th:replace="fragments/nav.html"/>
+<div class="container mt-5">
+  <h1 class="text-center">Add New Sensor</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <form th:action="@{/sensors/add}" th:object="${sensorDTO}" method="post">
+            <!-- Hidden ID Field -->
+            <input type="hidden" th:field="*{id}" />
+            <div class="mb-3">
+              <label for="location" class="form-label">Location</label>
+              <input type="text" id="location" name="location" th:field="*{location}" class="form-control" placeholder="Enter sensor location" required>
+            </div>
+            <div class="mb-3">
+              <label for="sensorType" class="form-label">Sensor Type</label>
+              <select id="sensorType" name="sensorType" th:field="*{sensorType}" class="form-select" required>
+                <option value="" disabled selected>Select sensor type</option>
+                <option value="TEMPERATURE">Temperature</option>
+                <option value="HUMIDITY">Humidity</option>
+                <option value="PRESSURE">Pressure</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Add Sensor</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<th:block th:replace="fragments/footer.html"/>
+</html>

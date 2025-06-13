@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/header.html"/>
+<th:block th:replace="fragments/nav.html"/>
+<div class="container mt-5">
+  <h1 class="text-center">User Settings</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <form th:action="@{/users/settings}" th:object="${userSettings}" method="post">
+            <div class="mb-3">
+              <label for="notificationPreference" class="form-label">Notification Preference</label>
+              <input type="text" id="notificationPreference" name="notificationPreference" th:field="*{notificationPreference}" class="form-control" placeholder="Enter preference">
+            </div>
+            <div class="mb-3">
+              <label for="temperatureUnit" class="form-label">Temperature Unit</label>
+              <select id="temperatureUnit" name="temperatureUnit" th:field="*{temperatureUnit}" class="form-select">
+                <option value="Celsius">Celsius</option>
+                <option value="Fahrenheit">Fahrenheit</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Save Settings</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<th:block th:replace="fragments/footer.html"/>
+</html>

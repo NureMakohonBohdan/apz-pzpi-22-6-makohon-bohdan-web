@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/header.html"/>
+<th:block th:replace="fragments/nav.html"/>
+<div class="container mt-5">
+    <h1 class="text-center">Create User</h1>
+    <div class="card">
+        <div class="card-body">
+            <form th:action="@{/users}" th:object="${user}" method="post">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" th:field="*{email}" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a href="/users" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+<th:block th:replace="fragments/footer.html"/>
+</html>
